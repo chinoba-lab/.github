@@ -13,7 +13,7 @@ across every repo that lacks its own — so the org defines them in one place.
 `chinoba-lab/.github` is the org's meta repository. It holds two things:
 
 1. **The public profile** — `profile/README.md`, the org's front page on GitHub.
-   → Source: [`../../org-profile/README.md`](../../org-profile/README.md)
+   → Source: [`../../profile/README.md`](../../profile/README.md)
 2. **Default community-health files** — inherited by every repo without its own.
 
 ```

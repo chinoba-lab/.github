@@ -79,7 +79,7 @@ transfer the repo and re-point the deployment integration at the new owner.
 The personal account also holds older prototypes and design-note repos that
 predate this architecture. They are **not** official and are **not** part of the
 curated Legacy set; they are handled by a one-time cleanup (archive / consolidate
-/ retire) defined in [`../../IMPLEMENTATION_PLAN.md`](../../IMPLEMENTATION_PLAN.md).
+/ retire) defined in [`../implementation/IMPLEMENTATION_PLAN.md`](../implementation/IMPLEMENTATION_PLAN.md).
 
 → A single, complete table of every repo with its stream and owner:
 [`../architecture/repository-map.md`](../architecture/repository-map.md)

@@ -11,7 +11,7 @@ list.
 > prototypes and design-note repos) that predate this architecture and are not
 > part of the curated set below. Their disposition (archive / merge / retire) is
 > handled as a one-time cleanup — see
-> [`../../IMPLEMENTATION_PLAN.md`](../../IMPLEMENTATION_PLAN.md) and the
+> [`../implementation/IMPLEMENTATION_PLAN.md`](../implementation/IMPLEMENTATION_PLAN.md) and the
 > *Pre-architecture* section near the end of this map.
 
 ---
@@ -40,7 +40,7 @@ list.
 |---|---|
 | `.github` | Org profile (profile/README.md) + community-health defaults |
 
-→ Profile source: [`../../org-profile/README.md`](../../org-profile/README.md)
+→ Profile source: [`../../profile/README.md`](../../profile/README.md)
 → Community-health files: [`../standards/community-health.md`](../standards/community-health.md)
 
 ---
@@ -76,7 +76,7 @@ list.
 
 Repos that predate the current five-layer architecture. They are **not part of
 the official set** and are not migrated as-is. The disposition for each is
-decided in [`../../IMPLEMENTATION_PLAN.md`](../../IMPLEMENTATION_PLAN.md).
+decided in [`../implementation/IMPLEMENTATION_PLAN.md`](../implementation/IMPLEMENTATION_PLAN.md).
 
 | Cluster | Repositories | Proposed disposition |
 |---|---|---|

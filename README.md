@@ -57,12 +57,14 @@ the spoke you need.
 ```
 chinoba-lab/
 ├── README.md ····················· you are here — the hub
-├── IMPLEMENTATION_PLAN.md ········· the master build checklist (review & roadmap)
-├── PHASE_0_SECURITY_CHECKLIST.md ·· the first org settings to apply (security & governance)
-├── PHASE_1_IMPLEMENTATION_GUIDE.md  the .github repo, profile, health files & templates
-├── org-profile/
+├── profile/
 │   └── README.md ················· the public profile for chinoba-lab/.github
 └── docs/
+    ├── implementation/ ··········· the phased build plan & execution guides
+    │   ├── README.md ············· index of the implementation docs
+    │   ├── IMPLEMENTATION_PLAN.md  the master build checklist (review & roadmap)
+    │   ├── PHASE_0_SECURITY_CHECKLIST.md  first org settings (security & governance)
+    │   └── PHASE_1_IMPLEMENTATION_GUIDE.md  the .github repo, profile, health & templates
     ├── organization/ ············· identity, what lives where, naming, migration
     ├── architecture/ ············· how the org maps to the 5 layers & 2 streams
     ├── governance/ ··············· teams, roles, who decides what
@@ -75,10 +77,11 @@ chinoba-lab/
 | [`docs/architecture/`](docs/architecture/) | How every repo maps onto Chinoba's layers and streams |
 | [`docs/governance/`](docs/governance/) | Who is responsible for what, and how decisions are made |
 | [`docs/standards/`](docs/standards/) | The standards every official repo must meet |
-| [`org-profile/`](org-profile/) | The text that introduces the org to the world |
-| [`IMPLEMENTATION_PLAN.md`](IMPLEMENTATION_PLAN.md) | The master checklist: review findings, migration order, phased roadmap |
-| [`PHASE_0_SECURITY_CHECKLIST.md`](PHASE_0_SECURITY_CHECKLIST.md) | The first org settings to apply — 2FA, repo-creation policy, roles, SECURITY.md |
-| [`PHASE_1_IMPLEMENTATION_GUIDE.md`](PHASE_1_IMPLEMENTATION_GUIDE.md) | Phase 1 execution: the `.github` repo, profile, community health, templates, branch rules |
+| [`docs/implementation/`](docs/implementation/) | The phased build plan and the Phase 0–1 execution guides |
+| [`profile/`](profile/) | The text that introduces the org to the world |
+| [`docs/implementation/IMPLEMENTATION_PLAN.md`](docs/implementation/IMPLEMENTATION_PLAN.md) | The master checklist: review findings, migration order, phased roadmap |
+| [`docs/implementation/PHASE_0_SECURITY_CHECKLIST.md`](docs/implementation/PHASE_0_SECURITY_CHECKLIST.md) | The first org settings to apply — 2FA, repo-creation policy, roles, SECURITY.md |
+| [`docs/implementation/PHASE_1_IMPLEMENTATION_GUIDE.md`](docs/implementation/PHASE_1_IMPLEMENTATION_GUIDE.md) | Phase 1 execution: the `.github` repo, profile, community health, templates, branch rules |
 
 ---
 

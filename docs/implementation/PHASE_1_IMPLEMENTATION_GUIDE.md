@@ -33,7 +33,7 @@ automatically.*
       gh auth status
       gh api orgs/chinoba-lab --jq '.login'        # → chinoba-lab
       ```
-- [ ] **Profile source available** — [`org-profile/README.md`](org-profile/README.md) in this workspace.
+- [ ] **Profile source available** — [`profile/README.md`](../../profile/README.md) in this workspace.
 - [ ] A working directory to clone into (anywhere outside this docs repo).
 
 ---
@@ -167,12 +167,12 @@ Target layout (build this in §3–§11, then push in §12):
 
 ## 5 · Organization README (`profile/README.md`)
 
-The content already exists in [`org-profile/README.md`](org-profile/README.md).
+The content already exists in [`profile/README.md`](../../profile/README.md).
 Publish it **minus the drafting note**.
 
 ```
 mkdir -p profile
-cp /path/to/chinoba-lab/org-profile/README.md profile/README.md
+cp /path/to/chinoba-lab/profile/README.md profile/README.md
 ```
 
 Then **delete the meta blockquote** near the top (the
@@ -290,7 +290,7 @@ experiments on the founder's personal account do not.
 Two layers, both satisfied without creating any extra repository:
 
 1. **The standard** is already documented:
-   [`docs/standards/repository-template.md`](docs/standards/repository-template.md).
+   [`docs/standards/repository-template.md`](../standards/repository-template.md).
 2. **A ready-to-copy scaffold** lives in `.github/repo-template/`, so future
    official repos start compliant. Build it now:
 
@@ -635,4 +635,4 @@ first PR — see §8.2.)
 > **Stop here. Do not proceed to Phase 2 (website ownership migration).**
 > Phase 2 begins only on explicit instruction.
 
-← Back to the [chinoba-lab workspace](README.md) · [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md)
+← Back to the [chinoba-lab workspace](../../README.md) · [docs/implementation/](README.md) · [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md)

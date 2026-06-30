@@ -49,7 +49,7 @@ The organization must be ready to receive repos:
 
 1. **Org exists** — `chinoba-lab` is created and verified.
 2. **`.github` profile repo exists** — seeded from
-   [`../../org-profile/README.md`](../../org-profile/README.md).
+   [`../../profile/README.md`](../../profile/README.md).
 3. **Teams exist** — at minimum `maintainers` and `core`
    (→ [`../governance/teams-and-roles.md`](../governance/teams-and-roles.md)).
 4. **Community-health defaults exist** — org-level `CODE_OF_CONDUCT`,

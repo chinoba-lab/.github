@@ -2,7 +2,7 @@
 
 **The master checklist for building the Chinoba GitHub Organization (`chinoba-lab`).**
 
-*Companion to the architecture in [`README.md`](README.md) and [`docs/`](docs/).
+*Companion to the architecture in [`README.md`](../../README.md) and [`docs/`](../).
 This is a planning artifact — it does not itself create or move any repository.*
 
 ---
@@ -144,7 +144,7 @@ evidence of bundling unrelated concerns. **Do not split for its own sake.**
 | Name collisions in org | ✅ none | Org is empty |
 | Domain continuity (chinoba.org) | ✅ unaffected | External host; ownership-only migration, deployment & DNS unchanged (Phase 2) |
 
-→ Full procedure and caveats: [`docs/organization/migration-plan.md`](docs/organization/migration-plan.md)
+→ Full procedure and caveats: [`docs/organization/migration-plan.md`](../organization/migration-plan.md)
 
 ---
 
@@ -160,7 +160,7 @@ Phases 0–1 are prerequisites; 2–5 can overlap once 0–1 are done.
   - **Restrict repository creation to owners** (members cannot create repos).
   - **Base member permission** set (Read) so members see code but don't write.
   - **Owner / member roles defined** (org-level GitHub roles, mapped to the
-    project roles in [`docs/governance/teams-and-roles.md`](docs/governance/teams-and-roles.md)).
+    project roles in [`docs/governance/teams-and-roles.md`](../governance/teams-and-roles.md)).
   - **SECURITY.md guidance** drafted (published with `.github` in Phase 1).
   - **Teams** created (`owners`, `maintainers`, `core`, `interaction`,
     `execution`, `learning`, `design`, `docs`).
@@ -174,7 +174,7 @@ Phases 0–1 are prerequisites; 2–5 can overlap once 0–1 are done.
 ### Phase 1 — Organization profile  · difficulty: Low
 - **Objectives:** give the org a public face.
 - **Deliverables:** create `chinoba-lab/.github`; publish `profile/README.md`
-  from [`org-profile/README.md`](org-profile/README.md); add org-level
+  from [`profile/README.md`](../../profile/README.md); add org-level
   `CODE_OF_CONDUCT`, `SECURITY`, `CONTRIBUTING`, `SUPPORT`, issue/PR templates.
 - **Dependencies:** Phase 0 (teams for CODEOWNERS defaults).
 - **Completion:** github.com/chinoba-lab renders the profile; health files resolve.
@@ -200,7 +200,7 @@ Phases 0–1 are prerequisites; 2–5 can overlap once 0–1 are done.
 ### Phase 3 — Research / runtime repositories  · difficulty: Medium–High
 - **Objectives:** graduate the 10 official code repos.
 - **Deliverables:** each repo brought to standard *on the Bench first*
-  ([`repository-template.md`](docs/standards/repository-template.md)), then
+  ([`repository-template.md`](../standards/repository-template.md)), then
   transferred in dependency order, assigned to its layer team, topic-tagged,
   branch-protected, redirect-verified.
 - **Dependencies:** Phases 0–1; standards finalized.
@@ -260,7 +260,7 @@ Difficulty: ●○○ Low · ●●○ Medium · ●●● High.
 
 ### P1 — Profile & website
 - [ ] Create `chinoba-lab/.github` — ●○○ — *(P0)*
-- [ ] Publish org profile from `org-profile/README.md` — ●○○ — *(.github)*
+- [ ] Publish org profile from `profile/README.md` — ●○○ — *(.github)*
 - [ ] Add org community-health files — ●○○ — *(.github)*
 - [ ] Transfer `chinoba-site` ownership only; verify redirect; **no DNS/host change** — ●○○ — *(profile)*
 
@@ -316,7 +316,7 @@ long-term maintenance** as-is:
 - Hub-and-spoke `docs/` mirrors the existing repo's proven convention.
 - Topic folders (`organization`, `architecture`, `governance`, `standards`) are
   stable categories that won't churn.
-- `org-profile/` cleanly separates publishable content from internal docs.
+- `profile/` cleanly separates publishable content from internal docs.
 
 **No structural change recommended.** Only one lightweight addition is worth it
 *as the plan executes* (not now): a `CHANGELOG.md` or `docs/decisions/` for
@@ -344,4 +344,4 @@ home for it. Defer until the first real graduation.
 
 ---
 
-← Back to the [chinoba-lab workspace](README.md)
+← Back to the [chinoba-lab workspace](../../README.md) · [docs/implementation/](README.md)

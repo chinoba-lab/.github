@@ -77,7 +77,7 @@ through team membership (Phase 0 §5).
 ## 4 · Owner / member roles
 
 The org-level GitHub roles, mapped to the project roles defined in
-[`docs/governance/teams-and-roles.md`](docs/governance/teams-and-roles.md).
+[`docs/governance/teams-and-roles.md`](../governance/teams-and-roles.md).
 
 | Org role | Who | May… | Maps to project role |
 |---|---|---|---|
@@ -151,10 +151,10 @@ credit reporters who wish to be named.
 - [ ] SECURITY.md guidance drafted — §6
 - [ ] **Branch-protection baseline** documented for official repos:
       protected default branch · ≥1 owning-team review · required status checks ·
-      no direct pushes (see [`docs/governance/teams-and-roles.md`](docs/governance/teams-and-roles.md))
+      no direct pushes (see [`docs/governance/teams-and-roles.md`](../governance/teams-and-roles.md))
 - [ ] Private Vulnerability Reporting enabled at org level
 - [ ] Decision-rights matrix acknowledged
-      ([`docs/governance/decision-rights.md`](docs/governance/decision-rights.md))
+      ([`docs/governance/decision-rights.md`](../governance/decision-rights.md))
 
 ---
 
@@ -184,4 +184,4 @@ gh api orgs/chinoba-lab/teams --jq '.[].slug'    # the eight teams
 
 ---
 
-← Back to the [chinoba-lab workspace](README.md)
+← Back to the [chinoba-lab workspace](../../README.md) · [docs/implementation/](README.md)

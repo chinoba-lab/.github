@@ -62,7 +62,7 @@ everywhere else, so the canonical list never drifts.
 | **LinkedIn** | [masao-watanabe-ai](https://www.linkedin.com/in/masao-watanabe-ai) | Updates & discussion |
 
 > The org profile text that renders these for visitors lives in
-> [`../../org-profile/README.md`](../../org-profile/README.md).
+> [`../../profile/README.md`](../../profile/README.md).
 
 ---
 
