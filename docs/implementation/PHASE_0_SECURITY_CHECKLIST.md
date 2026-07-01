@@ -109,8 +109,11 @@ The org-level GitHub roles, mapped to the project roles defined in
 
 ## 6 · SECURITY.md guidance
 
-Draft now; **published with `.github` in Phase 1** (the org-wide default that
-every repo inherits). Minimum contents:
+Draft now; **added to the existing `.github` repository in Phase 1**. Phase 1
+uses that already-existing repo to publish the organization's Community Health
+Files — `SECURITY.md`, `CODEOWNERS`, issue templates, etc. — as the org-wide
+defaults that every repo inherits. (Phase 1 does not create the `.github` repo;
+it already exists.) Minimum contents:
 
 - [ ] **Supported scope** — which repos/versions receive security fixes.
 - [ ] **Private reporting channel** — enable **GitHub Private Vulnerability
@@ -168,6 +171,10 @@ gh api orgs/chinoba-lab --jq \
 # expected → {"twofa": true, "member_create": false, "base": "read"}
 
 gh api orgs/chinoba-lab/teams --jq '.[].slug'    # the eight teams
+
+# Repository inventory — the `.github` repo already exists; Phase 0 must not
+# add any others. Expect exactly one entry.
+gh repo list chinoba-lab --json name --jq '.[].name'   # → only: .github
 ```
 
 ---
@@ -178,7 +185,8 @@ gh api orgs/chinoba-lab/teams --jq '.[].slug'    # the eight teams
 - [ ] Eight teams exist
 - [ ] SECURITY.md guidance ready to publish in Phase 1
 - [ ] Governance checklist (§7) complete
-- [ ] **No repository created or transferred** — confirmed
+- [ ] **No *additional* repository created or transferred** — the `.github`
+      repo already exists; `gh repo list chinoba-lab` must show only `.github`
 
 → Next: [`IMPLEMENTATION_PLAN.md`](IMPLEMENTATION_PLAN.md) Phase 1 (org profile + `.github`).
 
