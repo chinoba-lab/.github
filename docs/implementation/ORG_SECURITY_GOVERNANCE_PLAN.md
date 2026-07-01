@@ -85,12 +85,12 @@ assumptions. Items marked ✅ below need **no action**.
 | **Eight teams** (§9 / Phase B) | ✅ done |
 | Read-only workflow token (§7.2) | ✅ done |
 | **New-repo security defaults** (§5.2) | ✅ done (2026-07-01) |
+| **Actions allowlist** (§7.1) | ✅ done (2026-07-01) |
 | Org-wide **rulesets** (§3) | ⛔ **blocked** — free plan returns HTTP 403 |
-| Actions allowlist (§7.1) | ⬜ pending — the real next action |
+| Per-repo branch protection for `.github` (§4) | ⬜ optional — next action |
 
-> **Next actionable items** (Phase R, minus the blocked ruleset):
-> **§7.1** Actions allowed-actions policy · **§4** (optional) per-repo branch
-> protection for `.github`.
+> **Next actionable item** (Phase R, minus the blocked ruleset):
+> **§4** (optional) per-repo classic branch protection for `.github`.
 
 ---
 
@@ -363,28 +363,39 @@ Free plan: **public repos only**. No code repos exist yet, so this is a
 
 | # | Item | Method | Risk |
 |---|---|---|---|
-| 7.1 | Restrict which Actions can run — ⬜ pending (currently `all`) | **API** (UI) | Medium |
+| 7.1 | Restrict which Actions can run — ✅ done (2026-07-01) | **API** (UI) | Medium |
 | 7.2 | Default `GITHUB_TOKEN` = read-only — ✅ done | **API** (UI) | Low–Medium |
 | 7.3 | Require approval for fork-PR workflows | **UI** ⚠ | Low |
 
 > **Not covered by the current guides — recommended additions.** Sensible even
 > with no code repos yet, since the policy is inherited by future repos.
 
-**7.1 — Allowed actions** (least-privilege: GitHub + verified creators only)
+**7.1 — Allowed actions** — ✅ **DONE (executed 2026-07-01).** Least-privilege:
+GitHub-owned + Marketplace verified-creator actions only. Verified final state:
+`enabled_repositories=all`, `allowed_actions=selected`, `github_owned_allowed=true`,
+`verified_allowed=true`, `patterns_allowed=[]`. Both PUTs returned success.
 
-- **API:**
+- **API (as executed — two steps; Step A must precede Step B, else 409):**
   ```bash
   gh api -X PUT orgs/chinoba-lab/actions/permissions \
     -F enabled_repositories=all -f allowed_actions=selected
-  gh api -X PUT orgs/chinoba-lab/actions/permissions/selected-actions \
-    -F github_owned_allowed=true -F verified_allowed=true -F patterns_allowed='[]'
+  gh api -X PUT orgs/chinoba-lab/actions/permissions/selected-actions --input - <<'JSON'
+  { "github_owned_allowed": true, "verified_allowed": true, "patterns_allowed": [] }
+  JSON
   ```
+  > Use the `--input` JSON body for `patterns_allowed`; `gh api -F patterns_allowed='[]'`
+  > sends the literal string `"[]"` and is rejected.
 - **UI:** Org → Settings → *Actions → General* → **Allow select actions** → tick
   "Allow actions created by GitHub" + "…by verified creators."
-- **Verify:** `gh api orgs/chinoba-lab/actions/permissions --jq '{enabled:.enabled_repositories, allowed:.allowed_actions}'`
-- **Expected:** `{"enabled":"all","allowed":"selected"}`
+- **Verify:**
+  ```bash
+  gh api orgs/chinoba-lab/actions/permissions --jq '{enabled:.enabled_repositories, allowed:.allowed_actions}'
+  gh api orgs/chinoba-lab/actions/permissions/selected-actions
+  ```
+- **Rollback (revert to permissive):**
+  `gh api -X PUT orgs/chinoba-lab/actions/permissions -F enabled_repositories=all -f allowed_actions=all`
 - **Risk — Medium:** an over-tight allowlist can break future workflows; none exist
-  today, so set the baseline now and add patterns as real needs appear.
+  today. Add third-party non-verified actions to `patterns_allowed` per real need.
 
 **7.2 — Default workflow token permissions = read-only** — ✅ **already set**
 (audit: `default_workflow_permissions = read`, `can_approve_pull_request_reviews = false`). (no auto write, no PR approval)
@@ -486,15 +497,15 @@ baseline audit itself (0.3). Left here for the record and rollback reference.
 Turn on detection so there is something for teams to govern.
 
 - **§5.2** new-repository security defaults — ✅ **done (2026-07-01)**.
+- **§7.1** Actions allowed-actions policy (`all` → `selected`) — ✅ **done (2026-07-01)**.
 
 **Actionable items (next):**
 
-1. **§7.1** Actions allowed-actions policy (currently `all` → `selected`) — Medium. ⬜ pending.
-2. **§4** (optional) per-repo classic branch protection for `.github` — Medium. ⬜ pending.
-3. **§6.1–6.4** enable dependency graph / Dependabot / secret scanning on existing repos — Low.
-4. **§7.3** fork-PR approval — Low. · **§7.2** read-only workflow token — ✅ already done.
-5. **§6.5** secret-scanning **push protection** — Medium; enable knowingly.
-6. **§3** org ruleset — ⛔ **blocked on Free plan** (HTTP 403); defer to a GitHub
+1. **§4** (optional) per-repo classic branch protection for `.github` — Medium. ⬜ pending.
+2. **§6.1–6.4** enable dependency graph / Dependabot / secret scanning on existing repos — Low.
+3. **§7.3** fork-PR approval — Low. · **§7.2** read-only workflow token — ✅ already done.
+4. **§6.5** secret-scanning **push protection** — Medium; enable knowingly.
+5. **§3** org ruleset — ⛔ **blocked on Free plan** (HTTP 403); defer to a GitHub
    Team upgrade, or use §4 per-repo protection instead.
 
 ### Phase B — Organization structure — ✅ SATISFIED (audit 2026-07-01)
