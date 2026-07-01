@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions & discussion
+    url: https://github.com/orgs/chinoba-lab/discussions
+    about: Ask questions and discuss ideas here.
+  - name: Chinoba website
+    url: https://chinoba.org
+    about: Background, research, and books.

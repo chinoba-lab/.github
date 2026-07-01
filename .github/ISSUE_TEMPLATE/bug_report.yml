@@ -1,0 +1,15 @@
+name: Bug report
+description: Report something that is broken in an official Chinoba repo
+labels: ["type:bug"]
+body:
+  - type: textarea
+    id: what
+    attributes: { label: "What happened?", description: Expected vs actual }
+    validations: { required: true }
+  - type: textarea
+    id: repro
+    attributes: { label: Steps to reproduce }
+    validations: { required: true }
+  - type: input
+    id: version
+    attributes: { label: Version / commit }

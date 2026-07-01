@@ -1,0 +1,11 @@
+name: Feature request
+description: Propose a capability or change
+labels: ["type:feature"]
+body:
+  - type: textarea
+    id: problem
+    attributes: { label: The problem, description: "What relationship or decision is hard today?" }
+    validations: { required: true }
+  - type: textarea
+    id: proposal
+    attributes: { label: Proposed direction }
