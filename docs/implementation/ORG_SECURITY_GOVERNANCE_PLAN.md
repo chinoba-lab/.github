@@ -84,12 +84,13 @@ assumptions. Items marked ✅ below need **no action**.
 | **2FA** requirement (§1.1) | ✅ done |
 | **Eight teams** (§9 / Phase B) | ✅ done |
 | Read-only workflow token (§7.2) | ✅ done |
+| **New-repo security defaults** (§5.2) | ✅ done (2026-07-01) |
 | Org-wide **rulesets** (§3) | ⛔ **blocked** — free plan returns HTTP 403 |
-| New-repo security defaults (§5.2) · Actions allowlist (§7.1) | ⬜ pending — the real next actions |
+| Actions allowlist (§7.1) | ⬜ pending — the real next action |
 
 > **Next actionable items** (Phase R, minus the blocked ruleset):
-> **§5.2** new-repository security defaults · **§7.1** Actions allowed-actions
-> policy · **§4** (optional) per-repo branch protection for `.github`.
+> **§7.1** Actions allowed-actions policy · **§4** (optional) per-repo branch
+> protection for `.github`.
 
 ---
 
@@ -278,7 +279,7 @@ ruleset doesn't express. Do **not** run both redundantly.
 | # | Item | Method | Risk |
 |---|---|---|---|
 | 5.1 | Private Vulnerability Reporting, org-wide | **API** (UI) | Low |
-| 5.2 | "Enable for new repositories" security defaults | **Both** ⚠ | Low |
+| 5.2 | "Enable for new repositories" security defaults — ✅ done (2026-07-01) | **Both** ⚠ | Low |
 
 **5.1 — Private Vulnerability Reporting (PVR)** — pairs with SECURITY.md.
 
@@ -293,9 +294,11 @@ ruleset doesn't express. Do **not** run both redundantly.
 - **Verify (per repo):** `gh api repos/chinoba-lab/.github/private-vulnerability-reporting --jq '.enabled'`
 - **Expected:** `true` · **Risk: Low.**
 
-**5.2 — Security defaults for new repos** (auto-on for repos created later)
-GitHub now steers this through **Code security configurations**
-(`/orgs/{org}/code-security/configurations`), but the org PATCH fields still work. ⚠
+**5.2 — Security defaults for new repos** — ✅ **DONE (executed 2026-07-01).**
+All five new-repository defaults now read `true`: dependency graph, Dependabot
+alerts, Dependabot security updates, secret scanning, and secret-scanning push
+protection. Applied via the org PATCH form below (returned HTTP 200; verification
+confirmed all five). Affects repos created from now on; no existing repo touched.
 
 - **API (org PATCH form):**
   ```bash
@@ -480,15 +483,18 @@ baseline audit itself (0.3). Left here for the record and rollback reference.
 
 ### Phase R — Establish repository security (the real next step)
 
-Turn on detection so there is something for teams to govern. **Actionable items:**
+Turn on detection so there is something for teams to govern.
 
-1. **§5.2** new-repository security defaults — Low. ⬜ pending.
-2. **§7.1** Actions allowed-actions policy (currently `all` → `selected`) — Medium. ⬜ pending.
-3. **§4** (optional) per-repo classic branch protection for `.github` — Medium. ⬜ pending.
-4. **§6.1–6.4** enable dependency graph / Dependabot / secret scanning on existing repos — Low.
-5. **§7.3** fork-PR approval — Low. · **§7.2** read-only workflow token — ✅ already done.
-6. **§6.5** secret-scanning **push protection** — Medium; enable knowingly.
-7. **§3** org ruleset — ⛔ **blocked on Free plan** (HTTP 403); defer to a GitHub
+- **§5.2** new-repository security defaults — ✅ **done (2026-07-01)**.
+
+**Actionable items (next):**
+
+1. **§7.1** Actions allowed-actions policy (currently `all` → `selected`) — Medium. ⬜ pending.
+2. **§4** (optional) per-repo classic branch protection for `.github` — Medium. ⬜ pending.
+3. **§6.1–6.4** enable dependency graph / Dependabot / secret scanning on existing repos — Low.
+4. **§7.3** fork-PR approval — Low. · **§7.2** read-only workflow token — ✅ already done.
+5. **§6.5** secret-scanning **push protection** — Medium; enable knowingly.
+6. **§3** org ruleset — ⛔ **blocked on Free plan** (HTTP 403); defer to a GitHub
    Team upgrade, or use §4 per-repo protection instead.
 
 ### Phase B — Organization structure — ✅ SATISFIED (audit 2026-07-01)
