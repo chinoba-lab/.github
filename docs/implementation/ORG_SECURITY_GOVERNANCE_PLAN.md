@@ -71,6 +71,25 @@ gh repo list chinoba-lab --json name --jq '.[].name'   # expect only: .github
 - **Method:** `UI` = must be done in the GitHub web UI · `API` = doable via `gh`/REST · `Both` = either.
 - **Risk:** **Low** = reversible, no blast radius · **Medium** = can block a workflow/merge/push · **High** = can remove access or lock the org out.
 - ⚠ = accuracy caveat — verify the field/endpoint against `gh api` before relying on it.
+- ✅ = **verified already in place** by the 2026-07-01 baseline audit — no action needed.
+
+### 0.5 Audit status — verified 2026-07-01 (read-only)
+
+The baseline audit found the org already hardened well beyond the original
+assumptions. Items marked ✅ below need **no action**.
+
+| Area | State |
+|---|---|
+| **Phase A** defaults — repo-creation owners-only, base=`read`, default branch `main`, private-fork off | ✅ done |
+| **2FA** requirement (§1.1) | ✅ done |
+| **Eight teams** (§9 / Phase B) | ✅ done |
+| Read-only workflow token (§7.2) | ✅ done |
+| Org-wide **rulesets** (§3) | ⛔ **blocked** — free plan returns HTTP 403 |
+| New-repo security defaults (§5.2) · Actions allowlist (§7.1) | ⬜ pending — the real next actions |
+
+> **Next actionable items** (Phase R, minus the blocked ruleset):
+> **§5.2** new-repository security defaults · **§7.1** Actions allowed-actions
+> policy · **§4** (optional) per-repo branch protection for `.github`.
 
 ---
 
@@ -82,8 +101,8 @@ gh repo list chinoba-lab --json name --jq '.[].name'   # expect only: .github
 | 1.2 | Plan for ≥2 owners (avoid single point of failure) | Governance/manual | Low |
 | 1.3 | Verify org profile contact (`hello@chinoba.org`, `chinoba.org`) | Both | Low |
 
-**1.1 — Require two-factor authentication**
-Closes the verified gap (org 2FA was **disabled**). The 2FA *requirement* cannot
+**1.1 — Require two-factor authentication** — ✅ **already enabled** (audit 2026-07-01: `two_factor_requirement_enabled = true`). No action needed.
+The 2FA *requirement* cannot
 be toggled through the org PATCH API — `two_factor_requirement_enabled` is
 **read-only**; this must be done in the UI. ⚠
 
@@ -107,22 +126,22 @@ role via `gh api orgs/chinoba-lab/memberships/<user> --jq '.role'`. **Risk: Low.
 
 | # | Item | Method | Risk |
 |---|---|---|---|
-| 2.1 | Base member permission = `read` | **API** | Low |
-| 2.2 | Default branch name = `main` for new repos | **UI (API ⚠ unverified)** | Low |
+| 2.1 | Base member permission = `read` — ✅ done | **API** | Low |
+| 2.2 | Default branch name = `main` for new repos — ✅ done | **API/UI** | Low |
 | 2.3 | **(Optional)** Enable org Discussions | **UI only** | Low |
 
-**2.1 — Base permission Read** (members read official code, write only via team)
+**2.1 — Base permission Read** — ✅ **already set** (audit: `default_repository_permission = read`).
+(members read official code, write only via team)
 
 - **API:** `gh api -X PATCH orgs/chinoba-lab -f default_repository_permission=read`
 - **UI:** Org → Settings → *Member privileges* → **Base permissions** → `Read`.
 - **Verify:** `gh api orgs/chinoba-lab --jq '.default_repository_permission'`
 - **Expected:** `read` · **Risk: Low.**
 
-**2.2 — Default branch `main`**
-The Phase 1 guide proposes `gh api -X PATCH orgs/chinoba-lab -f default_repository_branch=main`.
-⚠ **`default_repository_branch` is not a documented, reliable org PATCH field** —
-treat the UI as the source of truth and only use the API form if the baseline
-audit (0.3) shows the field is actually read back.
+**2.2 — Default branch `main`** — ✅ **already set** (audit: `default_repository_branch = main`).
+The 2026-07-01 audit confirmed the `default_repository_branch` field **does** read
+back reliably (earlier caveat resolved); the API form below is safe if ever needed:
+`gh api -X PATCH orgs/chinoba-lab -f default_repository_branch=main`.
 
 - **UI:** Org → Settings → *Repository* → **Default branch name** → `main` → Update.
 - **Verify (UI-confirmable; API read may be absent ⚠):** create-time behavior, or
@@ -142,10 +161,18 @@ audit (0.3) shows the field is actually read back.
 
 ## 3 · Rulesets (preferred over classic branch protection)
 
+> ⛔ **BLOCKED on the current GitHub Free plan.** The 2026-07-01 audit ran
+> `GET /orgs/chinoba-lab/rulesets` and received **HTTP 403 — "Upgrade to GitHub
+> Team to enable this feature."** Org-wide rulesets are **not** available on Free
+> (this is stronger than the earlier "public repos only" caveat — the feature is
+> gated entirely). **Therefore §3 must be deferred until a GitHub Team upgrade, or
+> replaced with classic per-repo branch protection (§4).** For `.github` today,
+> use §4.
+
 | # | Item | Method | Risk |
 |---|---|---|---|
-| 3.1 | Org-wide default-branch ruleset (all repos) | **API** (UI equivalent) | Medium |
-| 3.2 | Solo-maintainer reconciliation (bypass vs. 0 approvals) | Decision + API | Medium |
+| 3.1 | Org-wide default-branch ruleset (all repos) — ⛔ blocked (Free plan) | **API** (UI equivalent) | Medium |
+| 3.2 | Solo-maintainer reconciliation (bypass vs. 0 approvals) — ⛔ blocked (Free plan) | Decision + API | Medium |
 
 **3.1 — Org ruleset**, created once, auto-applies to repos as they appear.
 Targets **all repositories**, **default branch**; requires PR + code-owner review,
@@ -333,8 +360,8 @@ Free plan: **public repos only**. No code repos exist yet, so this is a
 
 | # | Item | Method | Risk |
 |---|---|---|---|
-| 7.1 | Restrict which Actions can run | **API** (UI) | Medium |
-| 7.2 | Default `GITHUB_TOKEN` = read-only | **API** (UI) | Low–Medium |
+| 7.1 | Restrict which Actions can run — ⬜ pending (currently `all`) | **API** (UI) | Medium |
+| 7.2 | Default `GITHUB_TOKEN` = read-only — ✅ done | **API** (UI) | Low–Medium |
 | 7.3 | Require approval for fork-PR workflows | **UI** ⚠ | Low |
 
 > **Not covered by the current guides — recommended additions.** Sensible even
@@ -356,7 +383,8 @@ Free plan: **public repos only**. No code repos exist yet, so this is a
 - **Risk — Medium:** an over-tight allowlist can break future workflows; none exist
   today, so set the baseline now and add patterns as real needs appear.
 
-**7.2 — Default workflow token permissions = read-only** (no auto write, no PR approval)
+**7.2 — Default workflow token permissions = read-only** — ✅ **already set**
+(audit: `default_workflow_permissions = read`, `can_approve_pull_request_reviews = false`). (no auto write, no PR approval)
 
 - **API:**
   ```bash
@@ -385,10 +413,11 @@ Free plan: **public repos only**. No code repos exist yet, so this is a
 
 | # | Item | Method | Risk |
 |---|---|---|---|
-| 8.1 | Restrict repo creation to owners | **API** | Low |
-| 8.2 | (Optional) forking / member privileges | Both | Low |
+| 8.1 | Restrict repo creation to owners — ✅ done | **API** | Low |
+| 8.2 | (Optional) forking / member privileges — ✅ done | Both | Low |
 
-**8.1 — Members cannot create repositories** (keeps graduation an owner decision)
+**8.1 — Members cannot create repositories** — ✅ **already set** (audit: all three
+`members_can_create_*` fields = `false`). (keeps graduation an owner decision)
 
 - **API:**
   ```bash
@@ -402,13 +431,19 @@ Free plan: **public repos only**. No code repos exist yet, so this is a
 - **Verify:** `gh api orgs/chinoba-lab --jq '{r:.members_can_create_repositories, pub:.members_can_create_public_repositories, priv:.members_can_create_private_repositories}'`
 - **Expected:** all `false` · **Risk: Low** (owners unaffected; solo → no impact).
 
-**8.2 — Optional member-privilege hardening** — e.g. disallow member forking of
-private repos: `gh api -X PATCH orgs/chinoba-lab -F members_can_fork_private_repositories=false`.
-Verify via the same field. **Risk: Low.** Not required; note for completeness.
+**8.2 — Optional member-privilege hardening** — ✅ **already set** (audit:
+`members_can_fork_private_repositories = false`). Command for reference:
+`gh api -X PATCH orgs/chinoba-lab -F members_can_fork_private_repositories=false`.
+Verify via the same field. **Risk: Low.**
 
 ---
 
 ## 9 · Teams (governance scaffold — org-level, not repo files)
+
+> ✅ **Already created** (audit 2026-07-01): all eight teams exist —
+> `owners`, `maintainers`, `core`, `interaction`, `execution`, `learning`,
+> `design`, `docs`. No action needed. (Membership population is a later,
+> separate step.)
 
 > **Phase B — not Phase A.** Create teams **after repository security is
 > established** (§5.2, §6, §7, §3). Teams exist to grant write and drive
@@ -436,34 +471,34 @@ Apply low-risk, high-value settings first; establish repository security next;
 create the governance structure once there are protected repos to govern; do the
 access-removing item last.
 
-### Phase A — Low-risk organization defaults (execute now)
+### Phase A — Low-risk organization defaults — ✅ SATISFIED (audit 2026-07-01)
 
-The minimal, reversible foundation. Only these five items are in Phase A.
+All five target states are already in place; **no action required**:
+repository creation restricted to owners (§8.1), base permission = `read` (§2.1),
+default branch = `main` (§2.2), private-repo forking disabled (§8.2), and the
+baseline audit itself (0.3). Left here for the record and rollback reference.
 
-1. **0.3 baseline audit** (read-only) — capture current values as rollback targets.
-2. **§8.1** restrict repository creation to owners — Low.
-3. **§2.1** base member permission = `read` — Low.
-4. **§2.2** default branch = `main` (new repos) — Low.
-5. **§8.2 (Optional)** disable private repository forking — Low.
+### Phase R — Establish repository security (the real next step)
 
-### Phase R — Establish repository security (before Phase B)
+Turn on detection so there is something for teams to govern. **Actionable items:**
 
-Turn on detection and enforcement so there is something for teams to govern.
+1. **§5.2** new-repository security defaults — Low. ⬜ pending.
+2. **§7.1** Actions allowed-actions policy (currently `all` → `selected`) — Medium. ⬜ pending.
+3. **§4** (optional) per-repo classic branch protection for `.github` — Medium. ⬜ pending.
+4. **§6.1–6.4** enable dependency graph / Dependabot / secret scanning on existing repos — Low.
+5. **§7.3** fork-PR approval — Low. · **§7.2** read-only workflow token — ✅ already done.
+6. **§6.5** secret-scanning **push protection** — Medium; enable knowingly.
+7. **§3** org ruleset — ⛔ **blocked on Free plan** (HTTP 403); defer to a GitHub
+   Team upgrade, or use §4 per-repo protection instead.
 
-6. **§5.2** new-repo security defaults — Low.
-7. **§6.1–6.4** enable dependency graph / Dependabot / secret scanning on existing repos — Low.
-8. **§7.2** read-only default workflow token · **§7.1** allowed actions · **§7.3** fork-PR approval — Low–Medium; no workflows to break yet.
-9. **§6.5** secret-scanning **push protection** — Medium; enable knowingly.
-10. **§3** org ruleset + **§3.2** solo reconciliation — Medium.
+### Phase B — Organization structure — ✅ SATISFIED (audit 2026-07-01)
 
-### Phase B — Organization structure (after repository security is established)
+The eight teams (§9) already exist. Only membership population remains, as a
+later step.
 
-11. **§9** create the eight teams — Low; grants write and drives CODEOWNERS review
-    now that protected repos exist.
+### Phase C — Access-removing — ✅ SATISFIED (audit 2026-07-01)
 
-### Phase C — Access-removing (last)
-
-12. **§1.1** require 2FA — **High**; confirm your own 2FA immediately before.
+**§1.1** require 2FA is **already enabled** org-wide. No action.
 
 ### Deferred / conditional (not scheduled in A–C)
 
@@ -484,8 +519,8 @@ gh api orgs/chinoba-lab --jq '{
   base:.default_repository_permission
 }'   # expect {"twofa":true,"member_create":false,"base":"read"}
 
-gh api orgs/chinoba-lab/teams --jq '.[].slug'                 # eight teams
-gh api orgs/chinoba-lab/rulesets --jq '.[].name'             # default-branch-protection
+gh api orgs/chinoba-lab/teams --jq '.[].slug'                 # eight teams (already exist)
+gh api orgs/chinoba-lab/rulesets --jq '.[].name'             # ⛔ 403 on Free plan (see §3)
 gh api orgs/chinoba-lab/actions/permissions/workflow          # read-only default token
 gh api repos/chinoba-lab/.github --jq '.security_and_analysis' # features enabled
 gh repo list chinoba-lab --json name --jq '.[].name'          # only: .github
