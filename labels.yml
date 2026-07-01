@@ -1,0 +1,18 @@
+# type
+- { name: "type:bug",         color: "d73a4a", description: "Something is broken" }
+- { name: "type:feature",     color: "0e8a16", description: "New capability" }
+- { name: "type:docs",        color: "0075ca", description: "Documentation" }
+- { name: "type:question",    color: "d876e3", description: "A question" }
+# architecture
+- { name: "layer:interaction",color: "fbca04", description: "Interaction layer" }
+- { name: "layer:core",       color: "5319e7", description: "Decision Runtime / core" }
+- { name: "layer:execution",  color: "1d76db", description: "Execution layer" }
+- { name: "layer:learning",   color: "0e8a16", description: "Learning layer" }
+- { name: "layer:design",     color: "c5def5", description: "Design layer" }
+- { name: "stream:decision",  color: "b60205", description: "Decision Stream" }
+- { name: "stream:coordination", color: "006b75", description: "Coordination Stream" }
+# workflow
+- { name: "priority:high",    color: "b60205", description: "Urgent" }
+- { name: "status:blocked",   color: "e99695", description: "Blocked on something" }
+- { name: "good first issue", color: "7057ff", description: "Good entry point" }
+- { name: "help wanted",      color: "008672", description: "Maintainers want help" }
