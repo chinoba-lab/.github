@@ -109,7 +109,7 @@ role via `gh api orgs/chinoba-lab/memberships/<user> --jq '.role'`. **Risk: Low.
 |---|---|---|---|
 | 2.1 | Base member permission = `read` | **API** | Low |
 | 2.2 | Default branch name = `main` for new repos | **UI (API ⚠ unverified)** | Low |
-| 2.3 | Enable org Discussions | **UI only** | Low |
+| 2.3 | **(Optional)** Enable org Discussions | **UI only** | Low |
 
 **2.1 — Base permission Read** (members read official code, write only via team)
 
@@ -130,6 +130,9 @@ audit (0.3) shows the field is actually read back.
 - **Expected:** `main` · **Risk: Low** (affects only *new* repos).
 
 **2.3 — Discussions** (used by SUPPORT.md + issue-template contact link)
+
+> **Optional — not part of Phase A.** Enable only when you actually want to open
+> a discussion surface; the SUPPORT.md link is harmless until then.
 
 - **UI only:** Org → Settings → *Discussions* → enable, source repo `.github`.
 - **Verify:** open `https://github.com/orgs/chinoba-lab/discussions`.
@@ -251,6 +254,10 @@ ruleset doesn't express. Do **not** run both redundantly.
 | 5.2 | "Enable for new repositories" security defaults | **Both** ⚠ | Low |
 
 **5.1 — Private Vulnerability Reporting (PVR)** — pairs with SECURITY.md.
+
+> **Timing — not Phase A.** Enable when the organization actually contains
+> **production code repositories** to receive reports against. Until then the
+> `.github` docs repo has nothing to report against, so this is deferred.
 
 - **API (enable for the org / all repos):** `gh api -X PUT orgs/chinoba-lab/private-vulnerability-reporting`
   (disable = `-X DELETE`). ⚠ confirm endpoint on your `gh`/API version.
@@ -403,6 +410,11 @@ Verify via the same field. **Risk: Low.** Not required; note for completeness.
 
 ## 9 · Teams (governance scaffold — org-level, not repo files)
 
+> **Phase B — not Phase A.** Create teams **after repository security is
+> established** (§5.2, §6, §7, §3). Teams exist to grant write and drive
+> CODEOWNERS review; there is no benefit to creating them before the repos and
+> the protections they govern are in place.
+
 Included because teams are an org setting the guides require (Phase 0 §5) and
 CODEOWNERS defaults depend on them.
 
@@ -418,23 +430,48 @@ CODEOWNERS defaults depend on them.
 
 ---
 
-## 10 · Recommended execution order (risk-gated)
+## 10 · Phased execution order (risk-gated)
 
-Apply low-risk, high-value settings first; do the access-removing and
-merge-blocking items only after their preconditions hold.
+Apply low-risk, high-value settings first; establish repository security next;
+create the governance structure once there are protected repos to govern; do the
+access-removing item last.
 
-1. **0.3 baseline audit** (read-only) — know the deltas.
-2. **§8.1** restrict repo creation · **§2.1** base permission Read — Low, immediate.
-3. **§9** create the eight teams — Low; unblocks CODEOWNERS.
-4. **§2.2** default branch `main` · **§2.3** Discussions — Low.
-5. **§5** PVR + new-repo security defaults · **§6.1–6.4** enable on existing — Low.
-6. **§7.2** read-only workflow token · **§7.1** allowed actions · **§7.3** fork approval — Medium; no workflows to break yet.
-7. **§6.5** secret-scanning **push protection** — Medium; enable knowingly.
-8. **§3** org ruleset + **§3.2** solo reconciliation — Medium; do after teams so code-owner review is meaningful.
-9. **§1.1** require 2FA — **High**, last; confirm your own 2FA immediately before.
+### Phase A — Low-risk organization defaults (execute now)
 
-> §4 (classic branch protection) is **skipped** unless a per-repo need arises.
-> §6.6 (code scanning) applies **from Phase 3** when code repos exist.
+The minimal, reversible foundation. Only these five items are in Phase A.
+
+1. **0.3 baseline audit** (read-only) — capture current values as rollback targets.
+2. **§8.1** restrict repository creation to owners — Low.
+3. **§2.1** base member permission = `read` — Low.
+4. **§2.2** default branch = `main` (new repos) — Low.
+5. **§8.2 (Optional)** disable private repository forking — Low.
+
+### Phase R — Establish repository security (before Phase B)
+
+Turn on detection and enforcement so there is something for teams to govern.
+
+6. **§5.2** new-repo security defaults — Low.
+7. **§6.1–6.4** enable dependency graph / Dependabot / secret scanning on existing repos — Low.
+8. **§7.2** read-only default workflow token · **§7.1** allowed actions · **§7.3** fork-PR approval — Low–Medium; no workflows to break yet.
+9. **§6.5** secret-scanning **push protection** — Medium; enable knowingly.
+10. **§3** org ruleset + **§3.2** solo reconciliation — Medium.
+
+### Phase B — Organization structure (after repository security is established)
+
+11. **§9** create the eight teams — Low; grants write and drives CODEOWNERS review
+    now that protected repos exist.
+
+### Phase C — Access-removing (last)
+
+12. **§1.1** require 2FA — **High**; confirm your own 2FA immediately before.
+
+### Deferred / conditional (not scheduled in A–C)
+
+- **§2.3 Discussions** — **Optional**; enable only when a discussion surface is wanted.
+- **§5.1 Private Vulnerability Reporting** — enable **when the org contains
+  production code repositories** to report against.
+- **§6.6 code scanning** — deferred to **Phase 3** (needs code repos).
+- **§4 classic branch protection** — **skip** unless a per-repo need arises.
 
 ---
 
