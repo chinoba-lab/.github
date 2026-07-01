@@ -7,15 +7,6 @@ ecosystem building the infrastructure for Human–AI Coordination.
 
 [chinoba.org](https://chinoba.org)
 
----
-
-> This is the source for the organization's public profile. It is intended to
-> become `chinoba-lab/.github` → `profile/README.md`, the first thing a visitor
-> sees on [github.com/chinoba-lab](https://github.com/chinoba-lab). It is drafted
-> here, in the workspace, and is not itself the live profile.
-
----
-
 ## What is Chinoba
 
 Chinoba is built on a single idea: **intelligence is not a property of a model —
