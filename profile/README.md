@@ -21,6 +21,34 @@ that lets humans and AI act together in the open.
 
 ---
 
+## Research
+
+Explore Chinoba's complete Lines of Inquiry.
+
+| No. | Research Area |
+|------|---------------|
+| 01 | [Decision Trace Model](../docs/research/decision-trace-model.md) |
+| 02 | [Runtime Society](../docs/research/runtime-society.md) |
+| 03 | [Knowledge Flow](../docs/research/knowledge-flow.md) |
+| 04 | [Trust Infrastructure](../docs/research/trust-infrastructure.md) |
+| 05 | [AI Coordination](../docs/research/ai-coordination.md) |
+| 06 | [Multi-Agent Systems](../docs/research/multi-agent-systems.md) |
+| 07 | [AI Economics & Intelligence Field Economics](../docs/research/ai-economics-intelligence-field-economics.md) |
+| 08 | [Governance & Boundary Systems](../docs/research/governance-boundary-systems.md) |
+| 09 | [Physical AI & Cyber-Physical Systems](../docs/research/physical-ai-cyber-physical-systems.md) |
+| 10 | [Public AI & Algorithmic Governance](../docs/research/public-ai-algorithmic-governance.md) |
+| 11 | [AI Infrastructure & Hardware](../docs/research/ai-infrastructure-hardware.md) |
+| 12 | [Foundational AI Technologies](../docs/research/foundational-ai-technologies.md) |
+| 13 | [Graph Intelligence & Relational Systems](../docs/research/graph-intelligence-relational-systems.md) |
+| 14 | [Emergent & Distributed Intelligence](../docs/research/emergent-distributed-intelligence.md) |
+| 15 | [Philosophy of AI](../docs/research/philosophy-of-ai.md) |
+| 16 | [Case Study](../docs/research/case-study.md) |
+| ∞ | [Intelligence as Relationship](../docs/research/intelligence-as-relationship.md) |
+
+➡ [Browse the complete Research Hub](../docs/research/README.md)
+
+---
+
 ## What lives here
 
 `chinoba-lab` hosts the **official, open-source implementation** of Chinoba,
@@ -39,6 +67,45 @@ decision authority.
 > understandable. Only the runtime decides.
 
 → The full architecture and decision flow lives at [chinoba.org](https://chinoba.org).
+
+---
+
+## Open Source
+
+Chinoba's repositories are organized into reusable building blocks — each a
+self-contained piece of the decision infrastructure, meant to be composed rather
+than reinvented.
+
+| Category | Description | Status |
+|---|---|---|
+| **Starter Kits** | End-to-end templates for the signal → decision → trace flow | Planned |
+| **Decision Runtime** | The Decision OS kernel — the single point of decision | Planned |
+| **Schemas** | Shared contracts for signals, decisions, and traces | Planned |
+| **Examples** | Worked scenarios showing the runtime in practice | Planned |
+| **Tools** | Utilities for building, inspecting, and testing decisions | Planned |
+| **Infrastructure** | Deployment, ledgering, and coordination substrate | Planned |
+| **SDKs** | Language bindings for connecting systems to the runtime | Planned |
+
+---
+
+## Ecosystem Flow
+
+```
+Research
+        ↓
+Research Hub
+        ↓
+Open Source
+        ↓
+Decision Runtime
+        ↓
+Applications
+```
+
+Ideas originate in **research**, are documented and made navigable in the
+**Research Hub**, mature into reusable **open-source** components, converge on the
+**Decision Runtime** as the single decision authority, and finally power
+real-world AI **applications**.
 
 ---
 
