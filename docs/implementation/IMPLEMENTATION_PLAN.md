@@ -7,6 +7,24 @@ This is a planning artifact — it does not itself create or move any repository
 
 ---
 
+> ## ✅ Organization Foundation phase — COMPLETE (2026-07-01)
+>
+> Phases 0–1 and the organization security & governance work are **done and
+> verified against the live org**. Settings in place: 2FA required, repo creation
+> owner-only, base permission Read, eight teams, read-only workflow token,
+> new-repo security defaults on, Actions restricted to GitHub + verified creators;
+> the `.github` profile and community-health files are published.
+>
+> **Subsequent work should focus on application and repository development**
+> (Phases 2–7 below) — bringing code repos to standard and graduating them — **not
+> further organization setup.** Only two items remain org-level: per-repo branch
+> protection (§4, optional) and org-wide rulesets (blocked on GitHub Free).
+>
+> → Full closing record: [`FOUNDATION_COMPLETION_REPORT.md`](FOUNDATION_COMPLETION_REPORT.md) ·
+> execution log: [`ORG_SECURITY_GOVERNANCE_PLAN.md`](ORG_SECURITY_GOVERNANCE_PLAN.md)
+
+---
+
 ## 0 · Status snapshot (verified 2026-07-01)
 
 What is actually true today, confirmed against GitHub and chinoba.org:
@@ -246,23 +264,23 @@ Phases 0–1 are prerequisites; 2–5 can overlap once 0–1 are done.
 Priority: **P0** blocking · **P1** core · **P2** quality · **P3** future.
 Difficulty: ●○○ Low · ●●○ Medium · ●●● High.
 
-### P0 — Foundation & security (do first) → [`PHASE_0_SECURITY_CHECKLIST.md`](PHASE_0_SECURITY_CHECKLIST.md)
-- [ ] Require 2FA for all members — ●○○ — *(owner has 2FA first)*
-- [ ] Restrict repo creation to owners — ●○○
-- [ ] Set base member permission (Read) — ●○○
-- [ ] Define owner/member roles — ●○○ — *(governance docs ✓)*
-- [ ] Draft SECURITY.md guidance (publish in Phase 1) — ●○○
-- [ ] Create the eight teams — ●○○
-- [ ] Document branch-protection baseline — ●○○ — *(governance docs ✓)*
-- [ ] Run the org governance checklist — ●○○
+### P0 — Foundation & security (do first) → [`PHASE_0_SECURITY_CHECKLIST.md`](PHASE_0_SECURITY_CHECKLIST.md) — ✅ **COMPLETE (2026-07-01)**
+- [x] Require 2FA for all members — ●○○ — *(verified `true`)*
+- [x] Restrict repo creation to owners — ●○○ — *(verified `false`)*
+- [x] Set base member permission (Read) — ●○○ — *(verified `read`)*
+- [x] Define owner/member roles — ●○○ — *(governance docs ✓)*
+- [x] Draft SECURITY.md guidance (publish in Phase 1) — ●○○ — *(published in `.github`)*
+- [x] Create the eight teams — ●○○ — *(all 8 verified)*
+- [x] Document branch-protection baseline — ●○○ — *(governance docs ✓; org ruleset blocked on Free)*
+- [x] Run the org governance checklist — ●○○
 - [x] **Owner decision:** chinoba.org hosting → **external, ownership-only migration** ✓
 - [x] **Owner decision:** security → **harden in Phase 0** ✓
 
 ### P1 — Profile & website
-- [ ] Create `chinoba-lab/.github` — ●○○ — *(P0)*
-- [ ] Publish org profile from `profile/README.md` — ●○○ — *(.github)*
-- [ ] Add org community-health files — ●○○ — *(.github)*
-- [ ] Transfer `chinoba-site` ownership only; verify redirect; **no DNS/host change** — ●○○ — *(profile)*
+- [x] Create `chinoba-lab/.github` — ●○○ — *(P0)* ✅
+- [x] Publish org profile from `profile/README.md` — ●○○ — *(.github)* ✅
+- [x] Add org community-health files — ●○○ — *(.github)* ✅
+- [ ] Transfer `chinoba-site` ownership only; verify redirect; **no DNS/host change** — ●○○ — *(profile; Phase 2 — not started)*
 
 ### P1 — Core migration (dependency order)
 - [ ] Bring each official repo to standard on the Bench — ●●○ — *(standards)*
