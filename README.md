@@ -170,4 +170,19 @@ Laboratory into the Library. The record of how it got there is never deleted.
 
 ---
 
+## Open Discussions
+
+The Laboratory begins with questions. These are open discussion notes —
+deliberately unfinished — kept in [`lab/discussions/`](lab/discussions/) as a
+durable record of an idea still being shaped. Feedback, critique, and
+alternative directions are welcome at every stage.
+
+| Discussion | About |
+|---|---|
+| [**TeachDB Discussion Note**](lab/discussions/teachdb-discussion.md) — *From Knowledge Bases to Learning Runtime* | Open architectural discussion inspired by the TeachDB concept, exploring Learning Runtime, Teaching Trace, and Learning Graph. |
+
+→ How discussions work in the Laboratory: [`lab/discussions/README.md`](lab/discussions/README.md)
+
+---
+
 **Chinoba** · *Intelligence as Relationship* · `chinoba-lab`
