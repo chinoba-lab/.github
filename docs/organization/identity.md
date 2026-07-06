@@ -58,7 +58,7 @@ everywhere else, so the canonical list never drifts.
 | **Org profile** | `chinoba-lab/.github` → profile/README.md | First impression on GitHub |
 | **Research blog** | [deus-ex-machina-ism.com](https://deus-ex-machina-ism.com) | Long-form research |
 | **Library** | [chinoba.org/library](https://chinoba.org/library/) | Books (JP & EN) |
-| **YouTube** | [Chinoba Research Archive](https://www.youtube.com/@masawata-f2f) | Talks & demos |
+| **YouTube** | [Chinoba Research Archive](https://www.youtube.com/@chinobaresearch) | Talks & demos |
 | **LinkedIn** | [masao-watanabe-ai](https://www.linkedin.com/in/masao-watanabe-ai) | Updates & discussion |
 
 > The org profile text that renders these for visitors lives in

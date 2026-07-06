@@ -135,7 +135,7 @@ graduate from one to the other.
 - **Website** — [chinoba.org](https://chinoba.org)
 - **Research Blog** — [deus-ex-machina-ism.com](https://deus-ex-machina-ism.com)
 - **Library (JP & EN)** — [chinoba.org/library](https://chinoba.org/library/)
-- **YouTube** — [Chinoba Research Archive](https://www.youtube.com/@masawata-f2f)
+- **YouTube** — [Chinoba Research Archive](https://www.youtube.com/@chinobaresearch)
 - **LinkedIn** — [masao-watanabe-ai](https://www.linkedin.com/in/masao-watanabe-ai)
 
 ---
