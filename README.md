@@ -117,4 +117,57 @@ it describes how to organize the same ecosystem on a new surface.
 
 ---
 
+## Open Research Workflow
+
+Chinoba Lab is not only an open-source repository. It is an **Open Research
+Laboratory** — a place where ideas evolve in public. The repository is
+conceptually two things at once:
+
+- a **Library** — [`docs/research/`](docs/research/) — stable, settled knowledge;
+- a **Laboratory** — [`lab/`](lab/) — knowledge still being made.
+
+The Library records conclusions. The Laboratory records the *evolution* of an
+idea: the open question, the discussion, the draft, the review, the experiment.
+Chinoba deliberately keeps **not only conclusions, but the path that produced
+them** — because we believe knowledge becomes more valuable when ideas,
+discussions, architecture, experiments, and feedback are shared openly.
+
+> Communication creates Intelligence. Building Intelligence Together.
+
+Every idea travels the same path, and every stage is open to community feedback:
+
+```
+        Idea
+          ↓
+      Discussion
+          ↓
+    Research Note
+          ↓
+    Architecture
+          ↓
+     Experiment
+          ↓
+      Prototype
+          ↓
+        Paper
+          ↓
+        Book
+          ↓
+      Lecture
+```
+
+No stage is the finish line — an experiment can reopen a discussion, a review can
+revise an architecture. When an idea matures, it is **promoted** from the
+Laboratory into the Library. The record of how it got there is never deleted.
+
+| Read it when you want to… |  |
+|---|---|
+| Understand why the lab is open | [`OPEN_RESEARCH.md`](OPEN_RESEARCH.md) |
+| Follow the full research workflow | [`lab/README.md`](lab/README.md) |
+| Start a discussion, note, or experiment | [`templates/`](templates/) |
+| See how we use GitHub for open research | [`docs/governance/open-research.md`](docs/governance/open-research.md) |
+| Contribute — not only code | [`CONTRIBUTING.md`](CONTRIBUTING.md) |
+
+---
+
 **Chinoba** · *Intelligence as Relationship* · `chinoba-lab`

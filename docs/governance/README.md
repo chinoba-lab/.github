@@ -20,6 +20,7 @@ This section makes that real for `chinoba-lab`.
 |---|---|
 | [`teams-and-roles.md`](teams-and-roles.md) | The teams, the roles, and their GitHub permissions |
 | [`decision-rights.md`](decision-rights.md) | Who decides what, and how those decisions are recorded |
+| [`open-research.md`](open-research.md) | How research is conducted in the open — Discussions, Issues, and PRs |
 
 ---
 
